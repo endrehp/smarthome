@@ -22,8 +22,8 @@
                 var green = 0;
                 var blue = 0; 
 
-                var url = "colorChange";//+ $("#text").val();
-                window.open(url);
+                var url = "colorChange" + "?red="+red + "?green="+green + "?blue="+blue;
+                window.location.href = url;
             }
         </script>
 
