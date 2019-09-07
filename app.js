@@ -17,6 +17,14 @@ app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'views/index.html'));
 })
 
+app.get('/colorChange', function(req, res){
+
+    // Change color of phue
+    
+
+    res.sendFile(path.join(__dirname, 'views/index.html'));
+})
+
 app.listen(3000, function() {
     debug(`Listening on port ${chalk.green("3000")}`);
 });
