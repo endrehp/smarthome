@@ -21,7 +21,8 @@ app.get('/colorChange', function(req, res){
 
     // Change color of phue
     
-    
+
+    res.sendFile(path.join(__dirname, 'views/index.html'));
 })
 
 app.listen(3000, function() {

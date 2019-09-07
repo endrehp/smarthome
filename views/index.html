@@ -1,11 +1,18 @@
 <html>
     <head>
         <link rel="stylesheet" href="css/bootstrap.min.css" >
+        <link rel="stylesheet" href="css/style.css" >
 
     </head>
     <body>
         <div class="container">
             <div class="jumbotron">Frogner Smart Home</div>
+
+            <h6>RED:</h6>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="255" value="120" class="slider" id="myRange">
+                <p>Value: <span id="demo"></span></p>
+              </div>
 
             <button onclick="setColor()">Set Color</button>
             <p id="confirm_setCol"></p>
@@ -25,6 +32,14 @@
                 var url = "colorChange" + "?red="+red + "?green="+green + "?blue="+blue;
                 window.location.href = url;
             }
+
+            var slider = document.getElementById("myRange");
+            var output = document.getElementById("demo");
+            output.innerHTML = slider.value;
+
+            slider.oninput = function() {
+            output.innerHTML = this.value;
+}
         </script>
 
 
