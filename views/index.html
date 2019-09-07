@@ -14,6 +14,18 @@
                 <p>Value: <span id="redValue"></span></p>
               </div>
 
+            <h6>BLUE:</h6>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="255" value="120" class="slider" id="blueSlider">
+                <p>Value: <span id="blueValue"></span></p>
+             </div>
+
+             <h6>GREEN:</h6>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="255" value="120" class="slider" id="greenSlider">
+                <p>Value: <span id="greenValue"></span></p>
+             </div>
+
             <button onclick="setColor()">Set Color</button>
             <p id="confirm_setCol"></p>
 
@@ -33,13 +45,29 @@
                 window.location.href = url;
             }
 
-            var slider = document.getElementById("redSlider");
-            var output = document.getElementById("redValue");
-            output.innerHTML = slider.value;
+            var redSlider = document.getElementById("redSlider");
+            var redOutput = document.getElementById("redValue");
+            redOutput.innerHTML = redSlider.value;
+            redSlider.oninput = function() {
+            redOutput.innerHTML = this.value;
+            }
 
-            slider.oninput = function() {
-            output.innerHTML = this.value;
-}
+            var blueSlider = document.getElementById("blueSlider");
+            var blueOutput = document.getElementById("blueValue");
+            blueOutput.innerHTML = blueSlider.value;
+            blueSlider.oninput = function() {
+            blueOutput.innerHTML = this.value;
+            }
+
+            var greenSlider = document.getElementById("greenSlider");
+            var greenOutput = document.getElementById("greenValue");
+            greenOutput.innerHTML = greenSlider.value;
+            greenSlider.oninput = function() {
+            greenOutput.innerHTML = this.value;
+            }
+
+            
+
         </script>
 
 
