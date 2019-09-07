@@ -37,9 +37,9 @@
         <script>
             function setColor() {
 
-                var red = 255;
-                var green = 0;
-                var blue = 0; 
+                var red = redSlider.value;
+                var green = greenSlider.value;
+                var blue = blueSlider.value; 
 
                 var url = "colorChange" + "?red="+red + "&green="+green + "&blue="+blue;
                 window.location.href = url;
