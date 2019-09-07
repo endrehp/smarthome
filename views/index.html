@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/bootstrap.min.css" >
+        <link rel="stylesheet" href="css/style.css" >
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">Frogner Smart Home</div>
+
+            <h6>RED:</h6>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="255" value="120" class="slider" id="redSlider">
+                <p>Value: <span id="redValue"></span></p>
+              </div>
+
+            <h6>BLUE:</h6>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="255" value="120" class="slider" id="blueSlider">
+                <p>Value: <span id="blueValue"></span></p>
+             </div>
+
+             <h6>GREEN:</h6>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="255" value="120" class="slider" id="greenSlider">
+                <p>Value: <span id="greenValue"></span></p>
+             </div>
+
+            <button onclick="setColor()">Set Color</button>
+            <p id="confirm_setCol"></p>
+
+        </div>  
+
+        
+
+
+        <script>
+            function setColor() {
+
+                var red = 255;
+                var green = 0;
+                var blue = 0; 
+
+                var url = "colorChange" + "?red="+red + "&green="+green + "&blue="+blue;
+                window.location.href = url;
+            }
+
+            var redSlider = document.getElementById("redSlider");
+            var redOutput = document.getElementById("redValue");
+            redOutput.innerHTML = redSlider.value;
+            redSlider.oninput = function() {
+            redOutput.innerHTML = this.value;
+            }
+
+            var blueSlider = document.getElementById("blueSlider");
+            var blueOutput = document.getElementById("blueValue");
+            blueOutput.innerHTML = blueSlider.value;
+            blueSlider.oninput = function() {
+            blueOutput.innerHTML = this.value;
+            }
+
+            var greenSlider = document.getElementById("greenSlider");
+            var greenOutput = document.getElementById("greenValue");
+            greenOutput.innerHTML = greenSlider.value;
+            greenSlider.oninput = function() {
+            greenOutput.innerHTML = this.value;
+            }
+
+            
+
+        </script>
+
+
+
+        <script src="/js/jquery.slim.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
+        -->
+        <script src="/js/bootstrap.min.js"></script>
+    </body>
+
+
+</html>
