@@ -3,6 +3,7 @@ var chalk = require('chalk'); // color console meassage
 var debug = require('debug')('app'); // debug only writes error messages to the console when in debug mode
 var morgan = require('morgan');
 var path = require('path');
+var url = require('url');
 
 var Hue = require('philips-hue');
 
@@ -27,6 +28,9 @@ app.get('/colorChange', function (req, res) {
     // Change color of phue
     setLights(50000, 200, 90);
 
+    var url_parts = url.parse(req.url, true);
+    var query = url_parts.query;
+    console.log(query);
 
     res.sendFile(path.join(__dirname, 'views/index.html'));
 })
