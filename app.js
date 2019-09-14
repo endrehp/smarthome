@@ -14,14 +14,27 @@ app.use(express.static(path.join(__dirname, '/public/'))); // include static fil
 app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
+app.set('views', './src/views');
+app.set('view engine', 'ejs');
+
+const nav = [{ link: '/modes', title: 'Modes' },
+  { link: '/devices', title: 'Devices' }
+];
 
 
 app.get('/', function (req, res) {
 
     setLights(2237, 40, 185);
 
-    res.sendFile(path.join(__dirname, 'views/index.html'));
-})
+    //res.sendFile(path.join(__dirname, 'views/index.html'));
+    res.render(
+        'index',
+        {
+            nav,
+            title: 'Home'
+        }
+    );
+});
 
 app.get('/colorChange', function (req, res) {
 
