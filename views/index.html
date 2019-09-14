@@ -26,52 +26,24 @@
                 <p>Value: <span id="greenValue"></span></p>
              </div>
 
-            <button onclick="setColor()">Set Color</button>
+            <button onclick="apiCall('/colorChange')">Set Color</button>
+            <button onclick="apiCall('/bright')">Bright</button>
             <p id="confirm_setCol"></p>
 
+            <h6>HUE</h6>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="50000" value="25000" class="slider" id="hueSlider">
+                <p>Value: <span id="greenValue"></span></p>
+             </div>
+
         </div>  
+
 
         
 
 
-        <script>
-            function setColor() {
 
-                var red = redSlider.value;
-                var green = greenSlider.value;
-                var blue = blueSlider.value; 
-                
-                var url = "colorChange" + "?red="+red + "&green="+green + "&blue="+blue+ "&youknowIT=endre_e_eine_løg";
-                window.location.href = url;
-            }
-
-            var redSlider = document.getElementById("redSlider");
-            var redOutput = document.getElementById("redValue");
-            redOutput.innerHTML = redSlider.value;
-            redSlider.oninput = function() {
-            redOutput.innerHTML = this.value;
-            }
-
-            var blueSlider = document.getElementById("blueSlider");
-            var blueOutput = document.getElementById("blueValue");
-            blueOutput.innerHTML = blueSlider.value;
-            blueSlider.oninput = function() {
-            blueOutput.innerHTML = this.value;
-            }
-
-            var greenSlider = document.getElementById("greenSlider");
-            var greenOutput = document.getElementById("greenValue");
-            greenOutput.innerHTML = greenSlider.value;
-            greenSlider.oninput = function() {
-            greenOutput.innerHTML = this.value;
-            }
-
-            
-
-        </script>
-
-
-
+        <script src="js/script.js"></script>
         <script src="/js/jquery.slim.min.js"></script>
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
         -->

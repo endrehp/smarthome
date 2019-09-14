@@ -26,13 +26,17 @@ app.get('/', function (req, res) {
 app.get('/colorChange', function (req, res) {
 
     // Change color of phue
-    setLights(50000, 200, 90);
+    //setLights(50000, 200, 90);
 
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
     console.log(query);
+    setLights(query.hue, 200, 90);
+})
 
-    res.sendFile(path.join(__dirname, 'views/index.html'));
+app.get('/bright', function (req, res) {
+
+    setLights(2237, 40, 185);
 })
 
 app.listen(3000, function () {
