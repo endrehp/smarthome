@@ -1,13 +1,39 @@
-var express = require('express');
-var chalk = require('chalk'); // color console meassage
-var debug = require('debug')('app'); // debug only writes error messages to the console when in debug mode
-var morgan = require('morgan');
-var path = require('path');
-var url = require('url');
+const express = require('express');
+const chalk = require('chalk'); // color console meassage
+const debug = require('debug')('app'); // debug only writes error messages to the console when in debug mode
+const morgan = require('morgan');
+const path = require('path');
+const url = require('url');
+const sql = require('mysql');
+const Hue = require('philips-hue');
+const pool = require('./src/datasource/database');
 
-var Hue = require('philips-hue');
+const app = express();
+/*
+const config = {
+    user: 'smarthome-user',
+    password: '4Grever4',
+    host: 'localhost',
+    database: 'smarthomedb',
+}
 
-var app = express();
+const conn = sql.createConnection(config);//.catch(err => debug(error));
+conn.connect(err => {
+    if (err) throw err;
+    console.log("Connected");
+});
+
+conn.query('SELECT * FROM modes', (err, rows) => {
+    if (err) throw err;
+    
+    debug(rows);
+})
+*/
+
+pool.query('SELECT * FROM modes', (err, results, fields) => {
+    if (err) throw new Error(err);
+    debug(results);
+})
 
 app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '/public/'))); // include static files
@@ -21,10 +47,15 @@ const nav = [{ link: '/modes', title: 'Modes' },
   { link: '/devices', title: 'Devices' }
 ];
 
+const modeRouter = require('./src/routes/modeRoutes')(nav);
+//const deciveRouter = require('./src/routes/deviceRoutes')(nav);
+//const lightApi = require('./src/routes/lightApi');
 
-app.get('/', function (req, res) {
 
-    setLights(2237, 40, 185);
+app.use('/modes', modeRouter);
+app.get('/', (req, res) => {
+
+    //setLights(2237, 40, 185);
 
     //res.sendFile(path.join(__dirname, 'views/index.html'));
     res.render(
