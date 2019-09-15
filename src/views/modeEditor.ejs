@@ -10,9 +10,26 @@
     <%- include base.ejs %>
 
        
-    <div class="editorContainer" >
+    <div class="contentContainer" >
+        <div class="infoContainer">
         <p>Editor</p>
-        
+        <h3>Title: <input type="text" value="<%=mode.Title%>">
+        </h3>     
+        <br />
+        <h4>Description:</h4>    
+        <textarea rows="4" cols="50"><%=mode.Description %>
+        </textarea>
+        </div>
+
+        <div class="lightContainer">
+            <ul>
+            <% for (let i=0; i<lightmodes.length; i++) {%>
+            
+                <li><% lightmodes.R %></li>
+
+            <% } %>
+        </ul>
+        </div>
     </div>
        
         <script src="/js/jquery.slim.min.js"></script>

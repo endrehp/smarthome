@@ -10,7 +10,7 @@
     <%- include base.ejs %>
 
        
-    <div class="listContainer" >
+    <div class="contentContainer" >
 
     <% for (let i=0; i < modes.length; i++) {%>
 
@@ -29,7 +29,7 @@
                               
         <%} %>
 
-        <button class="btn btn-primary" onClick="createNewMode()">Create new mode</button>
+        <button class="btn btn-primary" onclick="window.location.href = '/modes/modeEditor/new';">Create new mode</button>
     </div>
         
 

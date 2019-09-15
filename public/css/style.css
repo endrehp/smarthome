@@ -208,7 +208,7 @@ a,a:hover {
 }
 
 
-.listContainer {
+.contentContainer {
   width: 70%;
   margin: auto;
   border-style: solid;
@@ -223,3 +223,4 @@ a,a:hover {
   border-style: solid;
 
 }
+
