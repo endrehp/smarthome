@@ -4,7 +4,8 @@ var pool = mysql.createPool({
     host: 'localhost',
     user: 'smarthome-user',
     password: '4Grever4',
-    database: 'smarthomedb'
+    database: 'smarthomedb',
+    multipleStatements:true
 })
 pool.getConnection((err, connection) => {
     if (err) {
