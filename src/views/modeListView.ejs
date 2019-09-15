@@ -1,12 +1,37 @@
 <html>
     <head>
-        <link rel="stylesheet" href="css/bootstrap.min.css" >
-        <link rel="stylesheet" href="css/style.css" >
+        <link rel="stylesheet" href="/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="/css/style.css" >
+        
 
     </head>
     <body>
 
-            <%- include base.ejs %>
+    <%- include base.ejs %>
+
+       
+    <div class="listContainer" >
+
+    <% for (let i=0; i < modes.length; i++) {%>
+
+
+        <div class="modeListRow">    
+                
+            <h3><%=modes[i].Title %></h3>
+          
+            <p><%=modes[i].Description %></p>
+            <a href="/modes/<%= modes[i].modeID%>" class="text-muted">Read More</a></small>
+            </h4>
+            <button class="btn btn-primary">Make current</button>
+            <button class="btn btn-primary" onclick="window.location.href = '/modes/modeEditor/<%= modes[i].modeID%>';">Edit</button>
+            <button class="btn btn-primary">Delete</button>
+        </div>
+                              
+        <%} %>
+
+        <button class="btn btn-primary" onClick="createNewMode()">Create new mode</button>
+    </div>
+        
 
         <script src="js/modeList_script.js"></script>
         <script src="/js/jquery.slim.min.js"></script>
@@ -14,29 +39,6 @@
         -->
         <script src="/js/bootstrap.min.js"></script>
     </body>
-
-    <% for (let i=0; i < modes.length; i++) {%>
-
-
-        <div class="row">    
-                <br>
-                <div class="col-md-2 col-sm-3 text-center">
-                </div>
-                <div class="col-md-10 col-sm-9">
-                  <h3><%=modes[i].Title %></h3>
-                  <div class="row">
-                    <div class="col-xs-9">
-                      <h4><%=modes[i].Description %></h4>
-                      <a href="/modes/<%= modes[i].modeID%>" class="text-muted">Read More</a></small>
-                      </h4></div>
-                    <div class="col-xs-3"></div>
-                  </div>
-                  <br><br>
-                </div>
-              </div>
-              <hr>
-            
-        <%} %>
 
 
 </html>

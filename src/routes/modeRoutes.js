@@ -26,6 +26,30 @@ function router(nav) {
         
     });
 
+    modeRouter.route('/modeEditor/:id').get((req,res) => {
+
+        const { id } = req.params;
+
+
+        pool.query('SELECT * FROM modes WHERE modeID=' + id, (err, results, fields) => {
+            
+            if (err) throw new Error(err);
+            debug(results);
+        
+
+
+            res.render(
+                'modeEditor',
+                {
+                    nav,
+                    title: 'Mode Editor',
+                    //mode: results[0]
+                }
+                );
+        });
+        
+    });
+
     return  modeRouter;
 }
 
