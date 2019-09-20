@@ -21,17 +21,79 @@
         </textarea>
         </div>
 
-        <div class="lightContainer">
-            <ul>
+        <div class="lightWrapper clearfix">
+
+        <div class="lightContainer box">
+            <table class="lightTable">
+                <tr>
+                    <th>Selected</th>
+                    <th>Light ID</th>
+                    <th>R</th>
+                    <th>G</th>
+                    <th>B</th>
+                    <th>Brightness</th>
+                </tr>
             <% for (let i=0; i<lightmodes.length; i++) {%>
             
-                <li><% lightmodes.R %></li>
+                <tr>
+                    <td>
+                            <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider round"></span>
+                            </label>
+
+                    </td>
+                    <td><%=lightmodes[i].lightID %></td>
+                    <td><%=lightmodes[i].R %></td>
+                    <td><%=lightmodes[i].G %></td>
+                    <td><%=lightmodes[i].B %></td>
+                    <td><%=lightmodes[i].Brightness %></td>
+                      
+                
+                    
+                </tr>
 
             <% } %>
-        </ul>
+                    </table>
+        </div>
+
+        <div class="box">
+            <div class="rgb-slider-container">
+                <h6>RED:</h6>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="255" value="120" class="slider" id="redSlider">
+                    <p>Value: <span id="redValue"></span></p>
+                </div>
+
+                <h6>BLUE:</h6>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="255" value="120" class="slider" id="blueSlider">
+                    <p>Value: <span id="blueValue"></span></p>
+                </div>
+
+                <h6>GREEN:</h6>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="255" value="120" class="slider" id="greenSlider">
+                    <p>Value: <span id="greenValue"></span></p>
+                </div>
+            </div>
+
+            <div class="colorWrapper">
+                <div class="colorDisplay">
+
+                </div>
+            </div>
+            
+        </div>
+
         </div>
     </div>
-       
+
+    
+            
+
+            
+    
         <script src="/js/jquery.slim.min.js"></script>
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
         -->

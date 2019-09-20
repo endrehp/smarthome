@@ -6,7 +6,7 @@
 .slider {
   -webkit-appearance: none;
   width: 100%;
-  height: 25px;
+  height: 12px;
   background: #d3d3d3;
   outline: none;
   opacity: 0.7;
@@ -21,16 +21,16 @@
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 25px;
-  height: 25px;
-  background: #4CAF50;
+  width: 12px;
+  height: 12px;
+  background: #000022;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  background: #4CAF50;
+  width: 12px;
+  height: 12px;
+  background: #000022;
   cursor: pointer;
 }
 
@@ -202,6 +202,66 @@ a,a:hover {
 .btn-facebook:hover {background-color:#2A4998;color:#4C6BBA;}
 .btn-google-plus:hover {background-color:#C23836;color:#E45A58;}
 
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .toggle-slider {
+  background-color: #2196F3;
+}
+
+input:focus + .toggle-slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .toggle-slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.toggle-slider.round {
+  border-radius: 34px;
+}
+
+.toggle-slider.round:before {
+  border-radius: 50%;
+}
+
 .header-container {
   width: 70%;
   margin: auto;
@@ -224,3 +284,58 @@ a,a:hover {
 
 }
 
+.infoContainer {
+  margin: 20px;
+}
+
+.lightTable {
+  margin: 20px;
+}
+
+.lightContainer {
+  
+}
+
+.box {
+  width: 50%;
+  float: left;
+  border-style: solid;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.rgb-slider-container {
+  padding: 20px;
+  width: 40%;
+  float: left;
+}
+
+.colorWrapper {
+  width: 60%;
+  float: right;
+}
+
+.colorDisplay {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: #000022;
+  border-style: solid;
+  margin: 0 auto;
+  position: relative;
+  top: 40px;
+}
+
+th, td {
+  padding: 5px;
+  border-style: solid;
+  text-align: center;
+}
+
+th {
+  background-color: #c7c9c9;
+}

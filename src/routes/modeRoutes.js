@@ -27,29 +27,46 @@ function router(nav) {
     });
 
     modeRouter.route('/modeEditor/:id').get((req,res) => {
-        (async function query() {
 
-            const { id } = req.params;
-            let query = 'SELECT * FROM modes WHERE modeID=?'//;SELECT * FROM lightmodes WHERE modeID =?';
+        const { id } = req.params;
 
-            let result = {}
-            //if (id === 'new') {
-                console.log('new');
-            //} else {
-                result = await pool.query(query, [id,id])
-            //}
-            
+        if (id === "new") {
+
             res.render(
                 'modeEditor',
-            {
-                nav,
-                title: 'Mode Editor',
-                mode: result.recordset
-            });
+                {
+                    nav,
+                    title: 'Mode Editor',
+                    mode: {},
+                    lightmodes: []
+                });
+            
+        } else {
 
+        let query = 'SELECT * FROM modes WHERE modeID=?;SELECT * FROM lightmodes WHERE modeID =?';
+ 
+        pool.query(query, [id, id], (err, results, fields) => {
+            
+            if (err) throw new Error(err);
+            debug(results);
+            console.log(results);
+        
+
+
+            res.render(
+                'modeEditor',
+                {
+                    nav,
+                    title: 'Mode Editor',
+                    mode: results[0][0],
+                    lightmodes: results[1]
+                }
+                );
         });
+    }
     });
 
+    
 
     return  modeRouter;
 }
