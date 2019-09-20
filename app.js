@@ -64,16 +64,3 @@ app.get('/bright', function (req, res) {
 app.listen(3000, function () {
     debug(`Listening on port ${chalk.green("3000")}`);
 });
-
-function setLights(hueVal, satVal, briVal) {
-
-    var hue = new Hue;
-    hue.bridge = "192.168.0.23";  // from hue.getBridges
-    hue.username = "nF0hElD3YBelZfqsbpfWouMZryQraKnNKFFjjvoG"; // from hue.auth
-    hue.light(4).setState({ hue: hueVal, sat: satVal, bri: briVal });
-    hue.light(6).setState({ hue: hueVal, sat: satVal, bri: briVal });
-    hue.light(7).setState({ hue: hueVal, sat: satVal, bri: briVal });
-    hue.light(8).setState({ hue: hueVal, sat: satVal, bri: briVal });
-    hue.light(9).setState({ hue: hueVal, sat: satVal, bri: briVal });
-
-}
