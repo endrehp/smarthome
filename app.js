@@ -9,26 +9,7 @@ const Hue = require('philips-hue');
 const pool = require('./src/datasource/database');
 
 const app = express();
-/*
-const config = {
-    user: 'smarthome-user',
-    password: '4Grever4',
-    host: 'localhost',
-    database: 'smarthomedb',
-}
 
-const conn = sql.createConnection(config);//.catch(err => debug(error));
-conn.connect(err => {
-    if (err) throw err;
-    console.log("Connected");
-});
-
-conn.query('SELECT * FROM modes', (err, rows) => {
-    if (err) throw err;
-    
-    debug(rows);
-})
-*/
 
 pool.query('SELECT * FROM modes', (err, results, fields) => {
     if (err) throw new Error(err);
@@ -55,9 +36,6 @@ const modeRouter = require('./src/routes/modeRoutes')(nav);
 app.use('/modes', modeRouter);
 app.get('/', (req, res) => {
 
-    //setLights(2237, 40, 185);
-
-    //res.sendFile(path.join(__dirname, 'views/index.html'));
     res.render(
         'index',
         {
