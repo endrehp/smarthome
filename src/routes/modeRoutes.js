@@ -32,18 +32,37 @@ function router(nav) {
 
         if (id === "new") {
 
+            let query = 'SELECT * FROM devices';
+ 
+            pool.query(query, (err, results, fields) => {
+                
+            if (err) throw new Error(err);
+        
+            devices = results;
+            let lights = devices.filter(device => {
+                return (device.type === "Light")  
+            });
+
+            let lightObjects = []
+            for (let i = 0; i<lights.length; i++) {
+                lightmode = {R: 0, G: 0, B: 0, Brightness: 0};
+                lightObjects.push({...lights[i], ...lightmode});
+
+            }
+
             res.render(
                 'modeEditor',
                 {
                     nav,
                     title: 'Mode Editor',
                     mode: {},
-                    lightmodes: []
+                    lightObjects
                 });
+            });
             
         } else {
 
-        let query = 'SELECT * FROM modes WHERE modeID=?;SELECT * FROM lightmodes WHERE modeID =?';
+        let query = 'SELECT * FROM modes WHERE modeID=?;SELECT * FROM lightmodes WHERE modeID =?;SELECT * FROM devices';
  
         pool.query(query, [id, id], (err, results, fields) => {
             
@@ -51,6 +70,18 @@ function router(nav) {
             debug(results);
             console.log(results);
         
+            lightmodes = results[1];
+            devices = result[2];
+            let lights = devices.filter(device => {
+                return (device.type === "Light")  
+              });
+
+            let lightObjects = [];
+            for (let i = 0; i<lights.length; i++) {
+                lightmode = lightmodes.find(obj => obj.lightID === lights[i].deviceID);
+                lightObjects.push({...lights[i], ...lightmode});
+
+            }
 
 
             res.render(
@@ -59,7 +90,7 @@ function router(nav) {
                     nav,
                     title: 'Mode Editor',
                     mode: results[0][0],
-                    lightmodes: results[1]
+                    lightObjects
                 }
                 );
         });

@@ -2,6 +2,7 @@
     <head>
         <link rel="stylesheet" href="/css/bootstrap.min.css" >
         <link rel="stylesheet" href="/css/style.css" >
+        <link rel="stylesheet" href="/css/modeEditorStyle.css" >
         
 
     </head>
@@ -33,9 +34,9 @@
                     <th>B</th>
                     <th>Brightness</th>
                 </tr>
-            <% for (let i=0; i<lightmodes.length; i++) {%>
+            <% for (let i=0; i<lightObjects.length; i++) {%>
             
-                <tr>
+                <tr class="lightRow">
                     <td>
                             <label class="switch">
                                     <input type="checkbox">
@@ -43,11 +44,11 @@
                             </label>
 
                     </td>
-                    <td><%=lightmodes[i].lightID %></td>
-                    <td><%=lightmodes[i].R %></td>
-                    <td><%=lightmodes[i].G %></td>
-                    <td><%=lightmodes[i].B %></td>
-                    <td><%=lightmodes[i].Brightness %></td>
+                    <td><%=lightObjects[i].Title %></td>
+                    <td class="R" ><%=lightObjects[i].R %></td>
+                    <td class="G"><%=lightObjects[i].G %></td>
+                    <td class="B"><%=lightObjects[i].B %></td>
+                    <td class="Brightness"><%=lightObjects[i].Brightness %></td>
                       
                 
                     
@@ -65,17 +66,24 @@
                     <p>Value: <span id="redValue"></span></p>
                 </div>
 
+                <h6>GREEN:</h6>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="255" value="120" class="slider" id="greenSlider">
+                    <p>Value: <span id="greenValue"></span></p>
+                </div>
+
                 <h6>BLUE:</h6>
                 <div class="slidecontainer">
                     <input type="range" min="1" max="255" value="120" class="slider" id="blueSlider">
                     <p>Value: <span id="blueValue"></span></p>
                 </div>
 
-                <h6>GREEN:</h6>
+                <h6>Brightness:</h6>
                 <div class="slidecontainer">
-                    <input type="range" min="1" max="255" value="120" class="slider" id="greenSlider">
-                    <p>Value: <span id="greenValue"></span></p>
+                    <input type="range" min="1" max="255" value="120" class="slider" id="brightnessSlider">
+                    <p>Value: <span id="brightnessValue"></span></p>
                 </div>
+
             </div>
 
             <div class="colorWrapper">
@@ -93,7 +101,7 @@
             
 
             
-    
+        <script src="/js/modeEditor_script.js"></script>
         <script src="/js/jquery.slim.min.js"></script>
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
         -->
