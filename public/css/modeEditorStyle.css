@@ -1,0 +1,55 @@
+.infoContainer {
+    margin: 20px;
+  }
+  
+  .lightTable {
+    margin: 20px;
+  }
+  
+  .lightContainer {
+    
+  }
+  
+  .box {
+    width: 50%;
+    float: left;
+    border-style: solid;
+  }
+  
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .rgb-slider-container {
+    padding: 20px;
+    width: 40%;
+    float: left;
+  }
+  
+  .colorWrapper {
+    width: 60%;
+    float: right;
+  }
+  
+  .colorDisplay {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: #000022;
+    border-style: solid;
+    margin: 0 auto;
+    position: relative;
+    top: 40px;
+  }
+  
+  th, td {
+    padding: 5px;
+    border-style: solid;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #c7c9c9;
+  }
