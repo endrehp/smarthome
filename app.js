@@ -33,11 +33,12 @@ const nav = [{ link: '/modes', title: 'Modes' },
 
 const modeRouter = require('./src/routes/modeRoutes')(nav);
 const databaseRouter = require('./src/routes/databaseRoutes')();
-//const deciveRouter = require('./src/routes/deviceRoutes')(nav);
+const deviceRouter = require('./src/routes/deviceRoutes')(nav);
 //const lightApi = require('./src/routes/lightApi');
 
 
 app.use('/modes', modeRouter);
+app.use('/devices', deviceRouter);
 app.use('/database', databaseRouter);
 app.get('/', (req, res) => {
 
