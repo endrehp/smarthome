@@ -17,3 +17,25 @@ const deletePost = async (modeData) => {
     console.log(myJson);
     location.reload();
 };
+
+function makeCurrent(id) {
+
+    let modeID = JSON.parse(id);
+    
+}
+
+const setMode = async (modeData) => {
+    const response = await fetch('/hueAPI/', {
+    method: 'POST',
+    body: JSON.stringify(modeData), // string or object
+    headers: {
+        'Content-Type': 'application/json'
+    }
+});
+    const myJson = await response.json(); //extract JSON from the http response
+    console.log(myJson);
+    location.reload();
+};
+
+
+
