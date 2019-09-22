@@ -95,7 +95,7 @@ function saveMode() {
 }
 
 const savePost = async (modeData) => {
-    const response = await fetch('/saveMode', {
+    const response = await fetch('/database/saveMode', {
     method: 'POST',
     body: JSON.stringify(modeData), // string or object
     headers: {
