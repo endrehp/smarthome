@@ -20,11 +20,12 @@
         <h4>Description:</h4>    
         <textarea rows="4" cols="50"><%=mode.Description %>
         </textarea>
-        </div>
+        <button id="saveBtn" onclick="saveMode()">Save</button>
+    </div>
 
-        <div class="lightWrapper clearfix">
+        <div class="lightWrapper">
 
-        <div class="lightContainer box">
+        <div class="lightContainer box1">
             <table class="lightTable">
                 <tr>
                     <th>Selected</th>
@@ -58,36 +59,36 @@
                     </table>
         </div>
 
-        <div class="box">
+        <div class="box2">
             <div class="rgb-slider-container">
                 <h6>RED:</h6>
                 <div class="slidecontainer">
                     <input type="range" min="1" max="255" value="120" class="slider" id="redSlider">
-                    <p>Value: <span id="redValue"></span></p>
+                    <p hidden>Value: <span id="redValue"></span></p>
                 </div>
 
                 <h6>GREEN:</h6>
                 <div class="slidecontainer">
                     <input type="range" min="1" max="255" value="120" class="slider" id="greenSlider">
-                    <p>Value: <span id="greenValue"></span></p>
+                    <p hidden>Value: <span id="greenValue"></span></p>
                 </div>
 
                 <h6>BLUE:</h6>
                 <div class="slidecontainer">
                     <input type="range" min="1" max="255" value="120" class="slider" id="blueSlider">
-                    <p>Value: <span id="blueValue"></span></p>
+                    <p hidden>Value: <span id="blueValue"></span></p>
                 </div>
 
                 <h6>Brightness:</h6>
                 <div class="slidecontainer">
-                    <input type="range" min="1" max="255" value="120" class="slider" id="brightnessSlider">
-                    <p>Value: <span id="brightnessValue"></span></p>
+                    <input type="range" min="0" max="100" value="50" class="slider" id="brightnessSlider">
+                    <p hidden>Value: <span id="brightnessValue"></span></p>
                 </div>
 
             </div>
 
             <div class="colorWrapper">
-                <div class="colorDisplay">
+                <div class="colorDisplay" id="colorDisplay">
 
                 </div>
             </div>
@@ -99,7 +100,10 @@
 
     
             
-
+        <!-- Pass ejs variables to javascript -->
+        <script>
+            let lightObjects = "<%= lightObjects %>" 
+        </script>
             
         <script src="/js/modeEditor_script.js"></script>
         <script src="/js/jquery.slim.min.js"></script>

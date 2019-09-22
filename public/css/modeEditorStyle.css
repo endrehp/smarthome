@@ -9,28 +9,35 @@
   .lightContainer {
     
   }
+
+  .lightWrapper {
+      display: flex;
+      flex-wrap: wrap;
+  }
   
-  .box {
-    width: 50%;
-    float: left;
+  .box1 {
+    flex: 1;
     border-style: solid;
   }
   
-  .clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
+  .box2 {
+    flex: 1;
+    border-style: solid;
+    display: flex;
   }
+
   
   .rgb-slider-container {
+    flex: 1;
     padding: 20px;
-    width: 40%;
-    float: left;
+    align-self: center;
+    /*width: 40%;*/
+    /*float: left;*/
   }
   
   .colorWrapper {
-    width: 60%;
-    float: right;
+    flex: 1;
+    align-self: center;
   }
   
   .colorDisplay {
@@ -41,7 +48,6 @@
     border-style: solid;
     margin: 0 auto;
     position: relative;
-    top: 40px;
   }
   
   th, td {

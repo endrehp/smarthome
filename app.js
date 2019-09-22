@@ -7,6 +7,7 @@ const url = require('url');
 const sql = require('mysql');
 const Hue = require('philips-hue');
 const pool = require('./src/datasource/database');
+var bodyParser = require('body-parser')
 
 const app = express();
 
@@ -23,6 +24,8 @@ app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
+app.use(bodyParser.json())
+
 
 const nav = [{ link: '/modes', title: 'Modes' },
   { link: '/devices', title: 'Devices' }
@@ -60,6 +63,14 @@ app.get('/bright', function (req, res) {
 
     setLights(2237, 40, 185);
 })
+
+app.post('/saveMode', (req, res) => {
+
+    // Write mode data to database
+    console.log("Request body:");
+    console.log(req.body);
+
+}); 
 
 app.listen(3000, function () {
     debug(`Listening on port ${chalk.green("3000")}`);
