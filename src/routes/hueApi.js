@@ -14,7 +14,10 @@ const LightState = v3.lightStates.LightState;
 
 var ipAdress = "192.168.0.23";  // from hue.getBridges
 var user = "nF0hElD3YBelZfqsbpfWouMZryQraKnNKFFjjvoG"; // from hue.auth
-var lamp1ids = [4, 6, 7, 9, 8];
+var lampIDs = [4, 6, 7, 9, 8];
+
+// Fare for tagras her
+var lampHueIDs = [[1,1], [2,4], [3,6], [4,7], [5,8], [6,9]];
 
 // Set ligths by mode ID
 function setLights(id) {
@@ -26,19 +29,22 @@ function setLights(id) {
         //console.log(results);
 
         if (results.length != 0) {
-            var lightmode = results[0];
-            var red = lightmode.R;
-            var green = lightmode.G;
-            var blue = lightmode.B;
-            var brightness = lightmode.Brightness;
-            //setAllLights(red, green, blue, brightness);
-            setAllAtOnce(red, green, blue, brightness);
+            for (var i = 0; i < results.length; i++) {
+                var lightmode = results[i];
+                var red = lightmode.R;
+                var green = lightmode.G;
+                var blue = lightmode.B;
+                var brightness = lightmode.Brightness;
+                var ID = lampHueIDs[i][1];
+                setLight(red, green, blue, brightness, ID);
+            }
         }
 
     });
 
 }
 
+/*
 async function setAllLights(red, green, blue, bright) {
 
     var hue, saturation, light;
@@ -53,7 +59,7 @@ async function setAllLights(red, green, blue, bright) {
         .brightness(bright)
         ;
 
-    for (var i = 0; i < lamp1ids.length; i++) {
+    for (var i = 0; i < lampIDs.length; i++) {
 
         await v3.discovery.nupnpSearch()
             .then(searchResults => {
@@ -64,18 +70,19 @@ async function setAllLights(red, green, blue, bright) {
                 // Using a LightState object to build the desired state
 
 
-                return api.lights.setLightState(lamp1ids[i], state);
+                return api.lights.setLightState(lampIDs[i], state);
             })
 
     }
 
 }
+*/
 
 async function setLight(red, green, blue, bright, lightID) {
     var hue, saturation, light;
     [hue, saturation, light] = rgbToHSB(red, green, blue);
 
-    if (lamp1ids.includes(lightID)) {
+    if (lampIDs.includes(lightID)) {
         const state = new LightState()
             .on()
             .hue(hue)
@@ -154,5 +161,3 @@ function setAllAtOnce(red, green, blue, brightness) {
     }, delay);
 
 }
-
-setLights(1);
