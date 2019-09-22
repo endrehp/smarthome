@@ -139,25 +139,3 @@ function rgbToHSB(red, green, blue) {
 
     return [hue, saturation, Math.floor(lightness)];
 }
-
-function setAllAtOnce(red, green, blue, brightness) {
-
-    var delay = 10;
-
-    setTimeout(() => {
-        setLight(red, green, blue, brightness, 4);
-    }, delay);
-    setTimeout(() => {
-        setLight(red, green, blue, brightness, 6);
-    }, delay);
-    setTimeout(() => {
-        setLight(red, green, blue, brightness, 7);
-    }, delay);
-    setTimeout(() => {
-        setLight(red, green, blue, brightness, 8);
-    }, delay);
-    setTimeout(() => {
-        setLight(red, green, blue, brightness, 9);
-    }, delay);
-
-}
