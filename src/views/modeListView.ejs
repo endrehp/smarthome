@@ -24,7 +24,7 @@
             </h4>
             <button class="btn btn-primary">Make current</button>
             <button class="btn btn-primary" onclick="window.location.href = '/modes/modeEditor/<%= modes[i].modeID%>';">Edit</button>
-            <button class="btn btn-primary">Delete</button>
+            <button class="btn btn-primary" onclick="deleteMode('<%=modes[i].modeID %>')">Delete</button>
         </div>
                               
         <%} %>

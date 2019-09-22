@@ -14,11 +14,11 @@
     <div class="contentContainer" >
         <div class="infoContainer">
         <p>Editor</p>
-        <h3>Title: <input type="text" value="<%=mode.Title%>">
+        <h3>Title: <input id="titleField" type="text" value="<%=mode.Title%>">
         </h3>     
         <br />
         <h4>Description:</h4>    
-        <textarea rows="4" cols="50"><%=mode.Description %>
+        <textarea id="descriptionField" rows="4" cols="50"><%=mode.Description %>
         </textarea>
         <button id="saveBtn" onclick="saveMode()">Save</button>
     </div>
@@ -98,11 +98,11 @@
         </div>
     </div>
 
-    
             
         <!-- Pass ejs variables to javascript -->
-        <script>
-            let lightObjects = "<%= lightObjects %>" 
+        <script type="text/javascript">
+            let lightObjects = JSON.parse('<%-lightObjects_string %>');
+            let modeID = '<%-mode.modeID %>' 
         </script>
             
         <script src="/js/modeEditor_script.js"></script>

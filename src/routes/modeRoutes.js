@@ -55,8 +55,9 @@ function router(nav) {
                 {
                     nav,
                     title: 'Mode Editor',
-                    mode: {},
-                    lightObjects
+                    mode: {modeID: "new"},
+                    lightObjects,
+                    lightObjects_string: JSON.stringify(lightObjects)
                 });
             });
             
@@ -71,7 +72,7 @@ function router(nav) {
             console.log(results);
         
             lightmodes = results[1];
-            devices = result[2];
+            devices = results[2];
             let lights = devices.filter(device => {
                 return (device.type === "Light")  
               });
@@ -90,7 +91,8 @@ function router(nav) {
                     nav,
                     title: 'Mode Editor',
                     mode: results[0][0],
-                    lightObjects
+                    lightObjects,
+                    lightObjects_string: JSON.stringify(lightObjects)
                 }
                 );
         });

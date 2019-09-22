@@ -9,6 +9,9 @@ let brightnessValues = document.getElementsByClassName("Brightness");
 
 let colorDisplay = document.getElementById("colorDisplay");
 
+let titleField = document.getElementById("titleField");
+let descriptionField = document.getElementById("descriptionField");
+
 // Lightswitch eventlisteners
 for (let i=0; i<lightSwitches.length; i++) {
 
@@ -62,7 +65,7 @@ blueSlider.addEventListener('input', function() {
 brightnessSlider.addEventListener('input', function() {
     for (let i=0; i<lightSwitches.length; i++) {
         if (lightSwitches[i].checked) {
-            brightnessValues[i].innerText = brightnessSlider.value/100;
+            brightnessValues[i].innerText = brightnessSlider.value + "%";
         }
     }    
 
@@ -73,27 +76,32 @@ brightnessSlider.addEventListener('input', function() {
 
 function saveMode() {
 
+    // Get title and description
+    let title = titleField.value;
+    let description = descriptionField.value;
+
     console.log("Saving");
     // update lightObjects
     for (let i=0; i<lightObjects.length; i++) {
-        lightObjects[i].R = redValues[i];
-        lightObjects[i].G = redValues[i];
-        lightObjects[i].B = redValues[i];
-        lightObjects[i].Brightness = redValues[i]; 
+        lightObjects[i].R = parseInt(redValues[i].innerText);
+        lightObjects[i].G = parseInt(greenValues[i].innerText);
+        lightObjects[i].B = parseInt(blueValues[i].innerText);
+        lightObjects[i].Brightness = parseInt(brightnessValues[i].innerText); 
     }
 
-
-    // Post lightobjects to backend
-    
-    savePost(lightObjects);
+    // Post lightobjects to backend    
+    savePost({lightObjects, modeID, title, description});
 
 }
 
-const savePost = async (lightObjects) => {
+const savePost = async (modeData) => {
     const response = await fetch('/saveMode', {
     method: 'POST',
-    body: JSON.stringify({a:1}), // string or object
+    body: JSON.stringify(modeData), // string or object
     headers: {
         'Content-Type': 'application/json'
     }
-})};
+});
+    const myJson = await response.json(); //extract JSON from the http response
+    console.log(myJson);
+};
