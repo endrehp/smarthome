@@ -28,18 +28,20 @@ app.use(bodyParser.json())
 
 
 const nav = [{ link: '/modes', title: 'Modes' },
-  { link: '/devices', title: 'Devices' }
+  { link: '/devices', title: 'Devices'},
+  {link: '/playground', title: 'Playground'}
 ];
 
 const modeRouter = require('./src/routes/modeRoutes')(nav);
 const databaseRouter = require('./src/routes/databaseRoutes')();
 const deviceRouter = require('./src/routes/deviceRoutes')(nav);
-//const lightApi = require('./src/routes/lightApi');
+const hueRouter = require('./src/routes/hueApi')();
 
 
 app.use('/modes', modeRouter);
 app.use('/devices', deviceRouter);
 app.use('/database', databaseRouter);
+app.use('/hueApi', hueRouter);
 app.get('/', (req, res) => {
 
     res.render(
@@ -67,6 +69,17 @@ app.get('/bright', function (req, res) {
     setLights(2237, 40, 185);
 })
 
+
+app.get('/playground', (req,res) => {
+
+    res.render(
+        'playground',
+        {
+            nav,
+            title: "Playground"
+        }
+    );
+});
 
 
 app.listen(3000, function () {

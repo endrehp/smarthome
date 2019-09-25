@@ -1,8 +1,34 @@
 // Database connection
 const express = require('express');
 const pool = require('../datasource/database');
-const modeRouter = express.Router();
+const hueRouter = express.Router();
 const debug = require('debug')('app:modeRoutes');
+
+function router(){
+
+    hueRouter.route('/setMode').post((req, res) => {
+
+        let modeID = req.body.modeID;
+        console.log("Set mode: " + modeID);
+
+        setLights(modeID);
+
+        res.json(JSON.stringify({result: 'success', modeID}));
+
+    });
+
+    hueRouter.route('/bright').get((req, res)=>{
+        
+        for (let i=0; i<lampIDs.length; i++) {
+            
+            setTimeout(() => setLight(255,255,255,20,lampIDs[i]), 400);
+        }
+
+    });
+    return hueRouter;
+}
+
+module.exports = router;
 
 
 // Light setting
@@ -17,7 +43,7 @@ var user = "nF0hElD3YBelZfqsbpfWouMZryQraKnNKFFjjvoG"; // from hue.auth
 var lampIDs = [4, 6, 7, 9, 8];
 
 // Fare for tagras her
-var lampHueIDs = [[1,1], [2,4], [3,6], [4,7], [5,8], [6,9]];
+var lampHueIDs = [[1,1], [2,4], [3,6], [4,7], [5,8], [6,9], [7,2], [8,3]];
 
 // Set ligths by mode ID
 function setLights(id) {
@@ -35,7 +61,7 @@ function setLights(id) {
                 var green = lightmode.G;
                 var blue = lightmode.B;
                 var brightness = lightmode.Brightness;
-                var ID = lampHueIDs[i][1];
+                var ID = lightmode.lightID;//lampHueIDs[i][1];
                 setLight(red, green, blue, brightness, ID);
             }
         }
