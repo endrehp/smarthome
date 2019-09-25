@@ -25,7 +25,7 @@
             const userAction = async (messageObject) => {
             const response = await fetch('/messageWriter', {
                 method: 'POST',
-                body: messageObject, // string or object
+                body: JSON.stringify({messageObject}), // string or object
                 headers: {
                     'Content-Type': 'application/json'
                     }

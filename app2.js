@@ -93,15 +93,17 @@ app.get('/messageWriter', (req, res) => {
 
 app.post('/messageWriter', (req, res) => {
 
-    let message = req.body.message;
+    let message = req.body.messageObject.message;
     console.log(message);
     if (sseRes) {
         sseResponse(sseRes, message);
     }
 
-    res.json(JSON.stringify({result: 'success', modeID}));
+    res.json(JSON.stringify({result: 'success'}));
 
 });
+
+app.get('/digitalFrame', (req, res) => res.render('digitalFrameView'));
 
 function sseDemo(req, res) {
     let messageId = 0;
@@ -119,7 +121,7 @@ function sseDemo(req, res) {
 
 
 function sseResponse(sseRes, message) {
-    sseRes.write(`data: ${message}`);
+    sseRes.write(`data: ${message}\n\n`);
 }
 
 app.get('/event-stream', (req, res) => {

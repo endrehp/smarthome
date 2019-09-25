@@ -36,12 +36,14 @@ const modeRouter = require('./src/routes/modeRoutes')(nav);
 const databaseRouter = require('./src/routes/databaseRoutes')();
 const deviceRouter = require('./src/routes/deviceRoutes')(nav);
 const hueRouter = require('./src/routes/hueApi')();
+const frameRouter = require('./src/routes/frameRoutes')();
 
 
 app.use('/modes', modeRouter);
 app.use('/devices', deviceRouter);
 app.use('/database', databaseRouter);
 app.use('/hueApi', hueRouter);
+app.use('/digitalFrame', frameRouter);
 app.get('/', (req, res) => {
 
     res.render(
