@@ -24,6 +24,22 @@
             <body>
             
             <div class="bg"></div>
+            
+
+            <script>
+                    const sseSource = new EventSource('/event-stream');
+        
+                    sseSource.addEventListener('message', (e) => {
+                        const messageData = e.data;
+                        console.log("From server: " + messageData);
+                    });
+        
+                    // When finished with the source close the connection
+                    function closeSSE() {
+                        sseSource.close();
+                    }
+                    
+            </script>
     </body>
 
 
