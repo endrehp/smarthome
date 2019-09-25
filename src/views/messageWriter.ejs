@@ -1,0 +1,44 @@
+<html>
+    <head>    
+
+    </head>
+    <body>
+
+        <form id="messageForm" >
+                <input id="messageField" type="text" placeholder="Write a message to sse client">
+                <input type="submit">
+        </form>
+        
+        <script>
+            let messageField = document.getElementById("messageField");
+
+            document.getElementById("messageForm").addEventListener("submit", (e) => {
+                e.preventDefault();
+                let message = messageField.value;
+                console.log("Message: " + message);
+
+                // Send ajax call to server
+                userAction({message});
+                
+            });
+
+            const userAction = async (messageObject) => {
+            const response = await fetch('/messageWriter', {
+                method: 'POST',
+                body: messageObject, // string or object
+                headers: {
+                    'Content-Type': 'application/json'
+                    }
+                });
+                const myJson = await response.json(); //extract JSON from the http response
+                console.log(myJson);
+            }
+            
+            </script>
+        <!--
+        <script src="/js/modeEditor_script.js"></script>
+        -->
+    </body>
+
+
+</html>
