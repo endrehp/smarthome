@@ -107,7 +107,9 @@
                     <table class="lightTable">
                         <tr>
                             <th>Selected</th>
-                            <th>Light ID</th>
+                            <th>Frame ID</th>
+                            <th>Title</th>
+                            <th>Filename</th>
                         </tr>
                     <% for (let i=0; i<frameObjects.length; i++) {%>
                     
@@ -118,7 +120,9 @@
                                     </label>
         
                             </td>
-                            <td><%=frameObjects[i].Title %></td>                    
+                            <td><%=frameObjects[i].deviceID %></td>
+                            <td><%=frameObjects[i].Title %></td>
+                            <td><%=frameObjects[i].filename %></td>                    
                             
                         </tr>
         
@@ -127,8 +131,10 @@
                 </div>
         
                 <div class="box2">
-                    
-                
+                    <form action="/modes/modeEditor/upload" method="post" enctype="multipart/form-data">
+                        <input type="file" name="upload" multiple>
+                        <input type="submit" value="Upload">
+                    </form>
                     
                     
                 

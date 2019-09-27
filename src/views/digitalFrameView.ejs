@@ -24,10 +24,10 @@
             <body>
             
             <div class="bg"></div>
-            
+
 
             <script>
-                    const sseSource = new EventSource('/event-stream');
+                    const sseSource = new EventSource('/digitalFrame/event-stream');
         
                     sseSource.addEventListener('message', (e) => {
                         const messageData = e.data;
