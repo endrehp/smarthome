@@ -5,6 +5,7 @@ const frameRouter = express.Router();
 const debug = require('debug')('app:frameRoutes');
 
 let sseRes;
+let currentMode = 0;
 
 function router(nav) {
 
@@ -17,6 +18,16 @@ function router(nav) {
                 url
             }
             );  
+    });
+
+    frameRouter.route('/setMode').post((req, res) => {
+
+        let modeID = req.body.modeID;
+        console.log("Set mode: " + modeID);
+
+        setFrameMode(modeID);
+
+        res.json(JSON.stringify({result: 'success', modeID}));
     });
 
     frameRouter.get('/event-stream', (req, res) => {
@@ -41,3 +52,21 @@ function router(nav) {
 }
 
 module.exports = router;
+
+
+function setFrameMode(modeID) {
+
+    let sql = "SELECT * FROM framemodes WHERE modeID=?";
+    
+    pool.query(sql, [id], (err, results, fields) => {
+        if (err) throw new Error(err);
+       
+        console.log(results);
+        frames = results[0];
+        
+        // Set current image url 
+
+        // Send SSE message to client to reload page
+        
+    });
+}

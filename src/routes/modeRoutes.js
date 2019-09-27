@@ -3,6 +3,7 @@ const sql = require('mysql');
 const pool = require('../datasource/database');
 const modeRouter = express.Router();
 const debug = require('debug')('app:modeRoutes');
+const formidable = require('formidable');
 
 function router(nav) {
 
@@ -125,6 +126,32 @@ function router(nav) {
                 );
         });
     }
+    });
+
+    modeRouter.route('/modeEditor/upload').post((req, res) => {
+        var form = new formidable.IncomingForm();
+    
+        form.parse(req);
+
+        
+    
+        form.on('fileBegin', function (name, file){
+            console.log(file);
+            //file.path = __dirname + '/public/images/' + file.name;
+            // FIX PATH
+            file.path = '/Users/endrepaulsen/Documents/smarthome/smarthome' + '/public/images/' + file.name;
+            
+        });
+    
+        form.on('file', function (name, file){
+            console.log('Uploaded ' + file.name);
+        });
+    
+        //res.sendFile(__dirname + '/index.html');
+        
+        //res.json(JSON.stringify({result: 'success', modeID}));
+
+        res.redirect('/');
     });
 
     
